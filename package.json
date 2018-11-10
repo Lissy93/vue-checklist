@@ -2,6 +2,7 @@
   "name": "vue-checklist",
   "version": "0.1.0",
   "private": true,
+  "main": "src/ChecklistMain.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -11,6 +12,7 @@
   "dependencies": {
     "vue": "^2.5.17",
     "vue-class-component": "^6.0.0",
+    "vue-material-checkbox": "^1.2.1",
     "vue-property-decorator": "^7.0.0"
   },
   "devDependencies": {
