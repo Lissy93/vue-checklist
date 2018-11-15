@@ -1,7 +1,14 @@
 <template>
-    <div class="item">
-        <VueCheckbox  :value="id" v-model="checked">{{ name }}</VueCheckbox>
-        <span>{{ details }}</span>
+    <div class="item checked">
+        <VueCheckbox  
+            :value="id" 
+            v-model="checked" 
+            @change="checkboxChanged"
+            class="item-checkbox">
+                {{ name }}
+        </VueCheckbox>
+        <div class="item-details">{{ details }}</div>
+        <span>{{ checked }}</span>
     </div>
 </template>
 
@@ -22,7 +29,11 @@ const checkboxStorage: any = {
   },
   save: function (checked: any) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(checked))
-  }
+  },
+  isChecked: () => {
+      return true;
+  },
+
 }
 
 
@@ -30,11 +41,48 @@ const checkboxStorage: any = {
     components: {
         VueCheckbox,
     },
-    data: () => {
+    mounted() {
+
+    },
+    methods: {
+        checkboxChanged: function (newVal) {
+
+        },
+        initSeshStorage: () => {
+            if (!localStorage.checkedItems) {
+                localStorage.checkedItems = JSON.stringify({});
+            }
+        },
+        readFromStorage: function (id: string) {
+            (this as any).initSeshStorage();
+            const seshStorage = JSON.parse(localStorage.checkedItems) || {};
+            return seshStorage[id] || false;
+        },
+        storeInStorage: function (id: string, value: boolean) {
+            (this as any).initSeshStorage();
+            const seshStorage = JSON.parse(localStorage.checkedItems) || {};
+            seshStorage[id] = value;
+            localStorage.checkedItems = JSON.stringify(seshStorage);
+        },
+    },
+    data: function () {
         return {
-            checked: checkboxStorage.fetch(),
+            isChecked: false,
         }
     },
+    computed: {
+        checked: {
+            get: function() {
+                this.$data.isChecked = (this as any).readFromStorage((this as any).id);
+                return this.$data.isChecked;
+            },
+            set: function(val) {
+                this.$data.isChecked = val;
+                (this as any).storeInStorage((this as any).id, val);
+            },
+            },
+    },
+ 
 })
 export default class ChecklistItem extends Vue {
     @Prop() private id!: string;
@@ -43,17 +91,44 @@ export default class ChecklistItem extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
     .item{
+        display: flex;
         padding: 0.5em 1em;
         margin: 0.5em 0;
 
+        &.checked{
+            background: #80808017;
+        }
 
-        // background: #FFF;
-        // box-shadow: 
-        //     0 -1px 0 #e0e0e0, 
-        //     0 0 2px rgba(0,0,0,.12), 
-        //     0 2px 4px rgba(0,0,0,.24);
-        // border-radius: 2px;
+        .item-checkbox{
+            width: 250px;
+        }
+
+        .item-details{
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .checkbox-container .checkbox-group{
+            height: 40px;
+            width: 40px;
+            border-radius: 20px;
+        }
+
+        .checkbox-container .checkbox-group:after{
+            width: 12px;
+            height: 23px;
+            top: 2px;
+            left: 10px;
+        }
+
+        .checkbox-container.checkbox-active .checkbox-group {
+            background-color: #ee6e73;
+            border-color: #ee6e73;
+        }
     }
 </style>

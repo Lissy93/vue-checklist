@@ -1,6 +1,6 @@
 <template>
     <div class="checklist">
-        <div v-for="(checkItem, index) in theList" :key="checkItem.name" :name="`chk-${index}`">
+        <div v-for="(checkItem, index) in theList" :key="checkItem.name" :name="`chk-${index}`" class="item">
             <ChecklistItem :id="`chk-${index}`" :name="checkItem.name" :details="checkItem.description"/>
         </div>
     </div>
@@ -37,6 +37,11 @@ export default class Checklist extends Vue {
         padding: 1em;
 
         background: #FFF;
+        
+        .item{
+            border-bottom: 1px solid #d0d0d0;
+            &:last-child { border-bottom: none; }
+        }
     }
 
 </style>
