@@ -1,5 +1,5 @@
 <template>
-    <div class="item checked">
+    <div class="item" v-bind:class="{ checked: checked }">
         <VueCheckbox  
             :value="id" 
             v-model="checked" 
@@ -7,8 +7,9 @@
             class="item-checkbox">
                 {{ name }}
         </VueCheckbox>
-        <div class="item-details">{{ details }}</div>
-        <span>{{ checked }}</span>
+        <div class="item-details">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -94,15 +95,18 @@ export default class ChecklistItem extends Vue {
 <style lang="scss">
     .item{
         display: flex;
-        padding: 0.5em 1em;
-        margin: 0.5em 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
 
         &.checked{
             background: #80808017;
         }
 
         .item-checkbox{
-            width: 250px;
+            max-height: 40px;
+            min-width: 150px;
+            width: 150px;
         }
 
         .item-details{
@@ -110,7 +114,15 @@ export default class ChecklistItem extends Vue {
             display: flex;
             justify-content: center;
             flex-direction: column;
+            text-align: left;
+        }
+
+        .checkbox-container.item-checkbox > label {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
             text-align: center;
+            font-weight: bold;
         }
 
         .checkbox-container .checkbox-group{

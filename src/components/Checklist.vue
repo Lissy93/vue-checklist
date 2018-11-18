@@ -1,7 +1,10 @@
 <template>
     <div class="checklist">
+        <ChecklistHeader/>
         <div v-for="(checkItem, index) in theList" :key="checkItem.name" :name="`chk-${index}`" class="item">
-            <ChecklistItem :id="`chk-${index}`" :name="checkItem.name" :details="checkItem.description"/>
+            <ChecklistItem :id="`chk-${index}`" :name="checkItem.name">
+                {{ checkItem.description }}
+            </ChecklistItem>
         </div>
     </div>
 </template>
@@ -12,11 +15,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { VueCheckbox  } from 'vue-material-checkbox';
 
 import ChecklistItem from './ChecklistItem.vue';
+import ChecklistHeader from './ChecklistHeader.vue';
 
 @Component({
     components: {
         VueCheckbox,
         ChecklistItem,
+        ChecklistHeader,
     },
     data: () => {
         return {
