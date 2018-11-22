@@ -1,6 +1,6 @@
 <template>
     <div class="checklist">
-        <ChecklistHeader/>
+        <ChecklistHeader :title="title" />
         <div v-for="(checkItem, index) in theList" :key="checkItem.name" :name="`chk-${index}`" class="item">
             <ChecklistItem :id="`chk-${index}`" :name="checkItem.name">
                 {{ checkItem.description }}
@@ -23,14 +23,11 @@ import ChecklistHeader from './ChecklistHeader.vue';
         ChecklistItem,
         ChecklistHeader,
     },
-    data: () => {
-        return {
-            checkedItems: [],
-        };
-    },
 })
 export default class Checklist extends Vue {
     @Prop() private theList!: [object];
+    @Prop() private title?: string;
+    @Prop() private showCounter?: boolean;
 }
 </script>
 
@@ -42,6 +39,10 @@ export default class Checklist extends Vue {
         padding: 1em;
 
         background: #FFF;
+        box-shadow: 
+            0 -1px 0 #e0e0e0, 
+            0 0 2px rgba(0,0,0,.12), 
+            0 2px 4px rgba(0,0,0,.24);
         
         .item{
             border-bottom: 1px solid #d0d0d0;

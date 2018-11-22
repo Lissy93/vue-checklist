@@ -1,9 +1,8 @@
 <template>
-    <div class="item" v-bind:class="{ checked: checked }">
+    <div class="inner-item" v-bind:class="{ checked: checked }">
         <VueCheckbox  
             :value="id" 
             v-model="checked" 
-            @change="checkboxChanged"
             class="item-checkbox">
                 {{ name }}
         </VueCheckbox>
@@ -17,38 +16,11 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { VueCheckbox  } from 'vue-material-checkbox';
 
-// localStorage persistence
-const STORAGE_KEY = 'todos-vuejs-2.0'
-const checkboxStorage: any = {
-  fetch: () => {
-    let checked = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    checked.forEach(function (check: any, index: number) {
-      check.id = index;
-    })
-    checkboxStorage.uid = checked.length;
-    return checked;
-  },
-  save: function (checked: any) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(checked))
-  },
-  isChecked: () => {
-      return true;
-  },
-
-}
-
-
 @Component({
     components: {
         VueCheckbox,
     },
-    mounted() {
-
-    },
     methods: {
-        checkboxChanged: function (newVal) {
-
-        },
         initSeshStorage: () => {
             if (!localStorage.checkedItems) {
                 localStorage.checkedItems = JSON.stringify({});
@@ -93,9 +65,9 @@ export default class ChecklistItem extends Vue {
 </script>
 
 <style lang="scss">
-    .item{
+    .inner-item{
         display: flex;
-        padding: 0;
+        padding: 0 0 0 0.5em;
         margin: 0;
         width: 100%;
 
@@ -123,19 +95,20 @@ export default class ChecklistItem extends Vue {
             flex-direction: column;
             text-align: center;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .checkbox-container .checkbox-group{
-            height: 40px;
-            width: 40px;
+            height: 20px;
+            width: 20px;
             border-radius: 20px;
         }
 
         .checkbox-container .checkbox-group:after{
-            width: 12px;
-            height: 23px;
-            top: 2px;
-            left: 10px;
+            width: 6px;
+            height: 12px;
+            top: 1px;
+            left: 5px;
         }
 
         .checkbox-container.checkbox-active .checkbox-group {
