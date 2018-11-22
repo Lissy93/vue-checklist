@@ -1,7 +1,7 @@
 {
   "name": "vue-checklist",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.2",
+  "private": false,
   "main": "src/ChecklistMain.ts",
   "scripts": {
     "serve": "vue-cli-service serve",
