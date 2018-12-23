@@ -65,6 +65,29 @@ export default class ChecklistItem extends Vue {
 </script>
 
 <style lang="scss">
+
+    @media only screen and (max-width: 768px) {
+        .inner-item {
+            display: flex;
+            flex-direction: column;
+
+            .item-checkbox {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+            }
+
+            .item-checkbox .checkbox-group{
+                display: none;
+            }
+
+            .item-details {
+                margin : 0 auto;
+            }
+        }
+
+    }
+
     .inner-item{
         display: flex;
         padding: 0 0 0 0.5em;
