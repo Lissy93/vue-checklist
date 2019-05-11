@@ -9,6 +9,7 @@
       <p>This is a quick demo, of a simple checklist component for Vue, with persistant memory</p>
       <p>The source code, can be found in this repo: <a href="https://github.com/Lissy93/vue-checklist">github.com/Lissy93/vue-checklist</a></p>
       <p>For a demo, of this used in action in a real use case, check out <a href="#">LINK-COMING-SOON</a></p>
+      <p>Licensed under the <a href="https://gist.github.com/Lissy93/143d2ee01ccc5c052a17">MIT</a>, © <a href="https://aliciasykes.com">Alicia Sykes</a> 2019</p>
     </footer>
   </div>
 </template>
