@@ -26,36 +26,36 @@ import { VueCheckbox  } from 'vue-material-checkbox';
                 localStorage.checkedItems = JSON.stringify({});
             }
         },
-        readFromStorage: function (id: string) {
+        readFromStorage(id: string) {
             (this as any).initSeshStorage();
             const seshStorage = JSON.parse(localStorage.checkedItems) || {};
             return seshStorage[id] || false;
         },
-        storeInStorage: function (id: string, value: boolean) {
+        storeInStorage(id: string, value: boolean) {
             (this as any).initSeshStorage();
             const seshStorage = JSON.parse(localStorage.checkedItems) || {};
             seshStorage[id] = value;
             localStorage.checkedItems = JSON.stringify(seshStorage);
         },
     },
-    data: function () {
+    data() {
         return {
             isChecked: false,
-        }
+        };
     },
     computed: {
         checked: {
-            get: function() {
+            get() {
                 this.$data.isChecked = (this as any).readFromStorage((this as any).id);
                 return this.$data.isChecked;
             },
-            set: function(val) {
+            set(val) {
                 this.$data.isChecked = val;
                 (this as any).storeInStorage((this as any).id, val);
             },
             },
     },
- 
+
 })
 export default class ChecklistItem extends Vue {
     @Prop() private id!: string;
@@ -99,8 +99,8 @@ export default class ChecklistItem extends Vue {
         }
 
         .item-checkbox{
-            max-height: 40px;
-            min-width: 150px;
+            max-height: 60px;
+            min-width: 180px;
             width: 150px;
         }
 
@@ -116,7 +116,7 @@ export default class ChecklistItem extends Vue {
             display: flex;
             justify-content: center;
             flex-direction: column;
-            text-align: center;
+            text-align: left;
             font-weight: bold;
             font-size: 1.2rem;
         }
