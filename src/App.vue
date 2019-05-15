@@ -28,14 +28,14 @@ import Checklist from './components/Checklist.vue';
                 {
                   name: 'Lint',
                   description:
-                    `You need to lint your shit. That trailing white space on line 76 might well be the end of
-                    your maridge.`,
+                    `You need to <b>lint your shit</b>. That trailing white space on line 76 might well be the
+                    end of your maridge.`,
                   checked: false,
                 },
                 {
                   name: 'Test',
                   description:
-                    `It\'s all well and good writing code that works totally fine if the user enters Hello World.
+                    `It\'s all well and good writing code that works totally fine if the user enters <i>Hello World.</i>
                     But if you don\'t test, and the user missed the \'d\' from world, the world may just implode`,
                   checked: false,
                 },
