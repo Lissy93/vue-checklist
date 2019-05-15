@@ -2,9 +2,11 @@
     <div class="checklist">
         <ChecklistHeader :title="title" />
         <div v-for="(checkItem, index) in theList" :key="checkItem.name" :name="`chk-${index}`" class="item">
-            <ChecklistItem :id="makeId(index, checkItem.name)" :name="checkItem.name">
-                {{ checkItem.description }}
-            </ChecklistItem>
+            <ChecklistItem 
+                :id="makeId(index, checkItem.name)" 
+                :name="checkItem.name" 
+                :details="checkItem.description"
+            />
         </div>
     </div>
 </template>
@@ -27,7 +29,7 @@ import ChecklistHeader from './ChecklistHeader.vue';
         makeId: (index, name) => {
             return `chk-${index}-${name.match(/\b(\w)/g).splice(0, 12).join('')}`;
         },
-    },
+},
 })
 export default class Checklist extends Vue {
     @Prop() private theList!: [object];

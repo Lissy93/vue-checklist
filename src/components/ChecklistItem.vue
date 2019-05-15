@@ -6,9 +6,7 @@
             class="item-checkbox">
                 {{ name }}
         </VueCheckbox>
-        <div class="item-details">
-            <slot></slot>
-        </div>
+        <div class="item-details" v-html="details"></div>
     </div>
 </template>
 
@@ -110,6 +108,10 @@ export default class ChecklistItem extends Vue {
             justify-content: center;
             flex-direction: column;
             text-align: left;
+            display: inline;
+            b, i, a {
+                display: inline;
+            }
         }
 
         .checkbox-container.item-checkbox > label {
